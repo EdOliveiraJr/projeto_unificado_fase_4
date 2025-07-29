@@ -32,11 +32,17 @@ Nesta fase, implementamos:
 #### 🧩 Modelagem
 
 - **Modelo Entidade-Relacionamento (MER)**
+  
+  ![MER](./img/modelo_entidade_relacionamento.png)
+
 - **Modelo Lógico (DER)** com definição de:
   - Tipos de dados
   - Chaves primárias (PK)
   - Chaves estrangeiras (FK)
   - Restrições: `NOT NULL`, `UNIQUE`
+
+  ![DER](./img/diagrama_entidade_relacionamento.png)
+
 
 #### 📄 Script DDL
 
@@ -65,14 +71,18 @@ Consultas criadas para análise dos dados persistidos:
 
 ---
 
----
-
 ## 📂 Estrutura do Projeto
 
 ```
 projeto_engajamento_fase_4/
 │
 ├── __init__.py
+|
+├──img/
+|    |
+|    ├── modelo_entidade_relacionamento.png
+|    |
+|    └── diagrama_entidade_relacionamento.png
 |
 ├── interacoes_globo.csv           # Dados brutos de interações
 |
