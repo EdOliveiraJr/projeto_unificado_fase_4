@@ -1,7 +1,7 @@
 -- Criação do Banco de Dados
-CREATE DATABASE interacoes_globotech;
+CREATE DATABASE globo_tech;
 
-USE interacoes_globotech;
+USE globo_tech;
 
 -- Script de criação da tabela usuario
 
