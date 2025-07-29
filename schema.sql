@@ -12,6 +12,12 @@ CREATE TABLE usuario
     );
 
 -- Script de criação da tabela plataforma
+CREATE TABLE plataforma
+  (
+    id_plataforma SMALLINT NOT NULL AUTO_INCREMENT,
+    nome_plataforma VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id_plataforma)
+  );
 
 -- Script de criação da tabela conteudo
 
