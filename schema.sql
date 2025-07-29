@@ -20,7 +20,13 @@ CREATE TABLE plataforma
   );
 
 -- Script de criação da tabela conteudo
-
+CREATE TABLE conteudo
+  (
+    id_conteudo SMALLINT NOT NULL AUTO_INCREMENT,
+    nome_conteudo VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id_conteudo)
+  );
+  
 -- Script de criação da tabela interacao
 CREATE TABLE interacao
   (
@@ -44,6 +50,7 @@ CREATE TABLE interacao
 -- Script de inserção de dados plataforma
 
 -- Script de inserção de dados conteudo
+
 
 -- Script de inserção de dados interacao
 
