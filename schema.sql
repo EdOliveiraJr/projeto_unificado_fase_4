@@ -1,3 +1,4 @@
+-- Criação do Banco de Dados
 CREATE DATABASE interacoes_globotech;
 
 USE interacoes_globotech;
