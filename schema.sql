@@ -1,4 +1,6 @@
--- Script de criação do banco de dados
+CREATE DATABASE interacoes_globotech;
+
+USE interacoes_globotech;
 
 -- Script de criação da tabela usuario
 
