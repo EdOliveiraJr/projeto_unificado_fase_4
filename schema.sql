@@ -4,6 +4,12 @@ CREATE DATABASE globo_tech;
 USE globo_tech;
 
 -- Script de criação da tabela usuario
+CREATE TABLE usuario
+    (
+        id_usuario BIGINT NOT NULL AUTO_INCREMENT,
+        nome_usuario VARCHAR(100) NOT NULL,
+        PRIMARY KEY (id_usuario)
+    );
 
 -- Script de criação da tabela plataforma
 
