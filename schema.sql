@@ -1,4 +1,7 @@
--- Script de criação do banco de dados
+-- Criação do Banco de Dados
+CREATE DATABASE globo_tech;
+
+USE globo_tech;
 
 -- Script de criação da tabela usuario
 CREATE TABLE usuario
