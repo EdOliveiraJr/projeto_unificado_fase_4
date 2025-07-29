@@ -3,6 +3,12 @@
 -- Script de criação da tabela usuario
 
 -- Script de criação da tabela plataforma
+CREATE TABLE plataforma
+  (
+    id_plataforma SMALLINT NOT NULL AUTO_INCREMENT,
+    nome_plataforma VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id_plataforma)
+  );
 
 -- Script de criação da tabela conteudo
 
@@ -27,12 +33,6 @@ CREATE TABLE interacao
 -- Script de inserção de dados usuario
 
 -- Script de inserção de dados plataforma
-CREATE TABLE plataforma
-  (
-    id_plataforma SMALLINT NOT NULL AUTO_INCREMENT,
-    nome_plataforma VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id_plataforma)
-  );
 
 -- Script de inserção de dados conteudo
 
