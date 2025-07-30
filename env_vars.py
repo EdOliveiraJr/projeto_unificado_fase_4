@@ -1,4 +1,4 @@
-host = "localhost"
-user = "root"
-password = "MySQL25@!"
+host = ""
+user = ""
+password = ""
 database = ""
