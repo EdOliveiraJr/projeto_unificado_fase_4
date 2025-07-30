@@ -122,25 +122,6 @@ def insert_conteudo(id_conteudo, nome_conteudo):
             f'INSERT INTO conteudo (id_conteudo, nome_conteudo) VALUES ({id_conteudo}, "{nome_conteudo}");'
         )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def conteudos_mais_consumidos(top = 5):
     mycursor.execute(
         f"""
