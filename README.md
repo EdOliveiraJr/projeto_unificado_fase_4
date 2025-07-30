@@ -138,7 +138,7 @@ projeto_engajamento_fase_4/
    pip install mysql-connection-python
    ```
 
-4. Crie um arquivo chamado env_var.py no formato seguinte com os dodos do sua conexão mysql local:
+4. Crie um arquivo chamado env_vars.py no formato seguinte com os dodos do sua conexão mysql local:
    ```bash
     host = "localhost"
     user = "seu_usuario ex:root"
