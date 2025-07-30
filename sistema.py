@@ -17,16 +17,16 @@ def create_connection():
             database = env_vars.database,
         )
         mycursor = mydb.cursor()
-        print("Conexão criada com sucesso.")
+        print("Conexão criada com sucesso.\n")
     except Error:
-        print(f"Erro: {Error}")
+        print(f"Erro: {Error}\n")
 
 
 def close_connection():
     if "mydb" in locals() and mydb.is_connected():
         mycursor.close()
         mydb.close()
-    print("Conexão com o MySQL fechada.")
+    print("Conexão com o MySQL fechada.\n")
 
 
 def create_db():
@@ -148,7 +148,7 @@ def insert_data_csv(path):
     try:
         df = pd.read_csv(path)
     except:
-        print(f'Nome do arquivo invalido: {path}')
+        print(f'Nome do arquivo invalido: {path}\n')
     
     try:
         for _, row in df.iterrows():
@@ -156,12 +156,12 @@ def insert_data_csv(path):
             insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
             id_plataforma = insert_plataforma(row["plataforma"])
             inserir_interacao(row, id_plataforma)
-        print("Dados do CSV inseridos com sucesso.")
+        print("Dados do CSV inseridos com sucesso.\n")
     except Error:
-        print(f"Não foi possível carregar os dados do CSV - {Error}")
+        print(f"Não foi possível carregar os dados do CSV - {Error}\n")
 
     except:
-        print("Não foi possível encontrar o CSV")
+        print("Não foi possível encontrar o CSV\n")
 
 
 def conteudos_mais_consumidos(top = 5):
@@ -206,6 +206,7 @@ def conteudos_mais_comentados(top = 5):
         """
     )
     return mycursor.fetchall()
+
 
 def plataforma_maior_engajamento(top = 5):
     mycursor.execute(

@@ -49,17 +49,17 @@ def main():
         opcao = input("Escolha uma opção: ").strip()
 
         if opcao == "1":
-          print("Criar Conexão com o SGBD")
+          print("\n*** Criar Conexão com o SGBD ***\n")
         
           sistema.create_connection()
         
         elif opcao == "2":
-          print("Criar Banco de Dados e Tabelas")
+          print("\n*** Criar Banco de Dados e Tabelas *** \n")
         
           sistema.create_db()
         
         elif opcao == "3":
-          print("Carregar dados CSV -> Banco de Dados ")
+          print("\n*** Carregar dados CSV -> Banco de Dados ***\n")
         
           path = input('Insira o nome do arquivo CSV: ')
         
@@ -68,8 +68,9 @@ def main():
         elif opcao == "4":
           print("\nTop Conteúdos Mais Consumidos: ")
 
-          rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+          rank = int(input('\nInsira o tamanho do rank top que deseja visualizar: '))
           
+          print()
           for id, cont, ttl in sistema.conteudos_mais_consumidos(rank):
               print(f'Id: {id} - Conteúdo: {cont} - Tempo total de consumo: {ttl}')
         
@@ -78,6 +79,7 @@ def main():
 
           rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
 
+          print()
           for id, cont, ttl in sistema.conteudos_mais_comentados(rank):
               print(f'Id: {id} - Conteúdo: {cont} - Total comentários: {ttl}')
         
@@ -85,11 +87,13 @@ def main():
           print("\nTop Plataformas com Maior Engajamento: ")
         
           rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
-        
+
+          print()
           for id, plat, ttl in sistema.plataforma_maior_engajamento(rank):
             print(f'Id: {id} - Plataforma: {plat} - Total engajamento: {ttl}')
         
         elif opcao == "7":
+            print()
             sistema.close_connection()
             
             print("\n           --- FIM ---\n")
