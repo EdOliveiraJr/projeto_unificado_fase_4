@@ -184,3 +184,24 @@ def conteudos_mais_consumidos(top = 5):
         '''
     )
     return mycursor.fetchall()
+
+
+def conteudos_mais_comentados(top = 5):
+    mycursor.execute(
+        f"""
+            SELECT
+                i.id_conteudo, c.nome_conteudo, COUNT(*) AS total_comentarios
+            FROM 
+                interacao as i
+            JOIN
+                conteudo as c ON i.id_conteudo = c.id_conteudo
+            WHERE 
+                tipo_interacao = 'comment'
+            GROUP BY 
+                i.id_conteudo
+            ORDER BY 
+                total_comentarios DESC limit {top};
+
+        """
+    )
+    return mycursor.fetchall()
