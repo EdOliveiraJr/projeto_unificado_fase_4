@@ -5,11 +5,11 @@ USE globo_tech;
 
 -- Script de criação da tabela usuario
 CREATE TABLE usuario
-    (
-        id_usuario BIGINT NOT NULL AUTO_INCREMENT,
-        nome_usuario VARCHAR(100) NOT NULL,
-        PRIMARY KEY (id_usuario)
-    );
+  (
+    id_usuario BIGINT NOT NULL AUTO_INCREMENT,
+    nome_usuario VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id_usuario)
+  );
 
 -- Script de criação da tabela plataforma
 CREATE TABLE plataforma
@@ -51,7 +51,6 @@ CREATE TABLE interacao
 
 -- Script de inserção de dados conteudo
 
-
 -- Script de inserção de dados interacao
 
 -- Script métrica conteudos_mais_consumidos
@@ -59,3 +58,8 @@ CREATE TABLE interacao
 -- Script métrica plataforma_maior_engajamento
 
 -- Script métrica conteudos_mais_comentados
+
+
+
+
+
