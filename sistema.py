@@ -122,19 +122,24 @@ def insert_conteudo(id_conteudo, nome_conteudo):
             f'INSERT INTO conteudo (id_conteudo, nome_conteudo) VALUES ({id_conteudo}, "{nome_conteudo}");'
         )
 
-def inserir_interacao(row, id_plataforma):
+def conteudos_mais_consumidos(top = 5):
     mycursor.execute(
         f"""
-        INSERT INTO interacao (
-            id_usuario, id_conteudo, id_plataforma,
-            comment_text, tipo_interacao,
-            watch_duration_seconds, timestamp_interacao
-        ) VALUES ({row["id_usuario"]},
-                  {row["id_conteudo"]}, 
-                  {id_plataforma},
-                  "{row["comment_text"] if pd.notna(row["comment_text"]) else ""}",
-                  "{row["tipo_interacao"]}",
-                  {int(row["watch_duration_seconds"]) if pd.notna(row["watch_duration_seconds"]) else 0},
-                  "{row["timestamp_interacao"]}")
-    """
+            SELECT
+                i.id_conteudo,
+                c.nome_conteudo,
+                -- A função SUM() soma os valores.
+                -- A função COALESCE() trata os valores nulos/vazios como 0 para não dar erro na soma.
+                -- A função CAST() converte o texto para um número inteiro (INT).
+                SUM(COALESCE(CAST(i.watch_duration_seconds AS UNSIGNED), 0)) AS tempo_total_consumo_segundos
+            FROM
+                interacao as i
+            JOIN
+                conteudo as c ON i.id_conteudo = c.id_conteudo
+            GROUP BY
+                i.id_conteudo, c.nome_conteudo
+            ORDER BY
+                tempo_total_consumo_segundos DESC LIMIT {top};
+        """
     )
+    return mycursor.fetchall()
