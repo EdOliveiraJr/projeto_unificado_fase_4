@@ -26,7 +26,7 @@ def close_connection():
     if "mydb" in locals() and mydb.is_connected():
         mycursor.close()
         mydb.close()
-    print("Conexão com o MySQL fechada.🔌🚫 \n")
+    print("Conexão com o SGBD fechada.🔌🚫 \n")
 
 
 def create_db():
