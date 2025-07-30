@@ -6,16 +6,15 @@ import pandas as pd
 mydb = None
 mycursor = None
 
-
 def create_connection():
     try:
         global mydb
         global mycursor
         mydb = mysql.connector.connect(
-            host=env_vars.host,
-            user=env_vars.user,
-            password=env_vars.password,
-            database=env_vars.database,
+            host = env_vars.host,
+            user = env_vars.user,
+            password = env_vars.password,
+            database = env_vars.database,
         )
         mycursor = mydb.cursor()
         print("Conexão criada com sucesso.")
@@ -145,19 +144,21 @@ def inserir_interacao(row, id_plataforma):
     )
 
 
-def insert_data_csv(path_csv):
+def insert_data_csv(path):
     try:
-        print(f"Iniciando o carregamento dos dados do CSV {path_csv}...")
-        df = pd.read_csv(path_csv)
-        try:
-            for _, row in df.iterrows():
-                insert_usuario(row["id_usuario"])
-                insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
-                id_plataforma = insert_plataforma(row["plataforma"])
-                inserir_interacao(row, id_plataforma)
-            print("Dados do CSV inseridos com sucesso.")
-        except Error:
-            print(f"Não foi possível carregar os dados do CSV - {Error}")
+        df = pd.read_csv(path)
+    except:
+        print(f'Nome do arquivo invalido: {path}')
+    
+    try:
+        for _, row in df.iterrows():
+            insert_usuario(row["id_usuario"])
+            insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
+            id_plataforma = insert_plataforma(row["plataforma"])
+            inserir_interacao(row, id_plataforma)
+        print("Dados do CSV inseridos com sucesso.")
+    except Error:
+        print(f"Não foi possível carregar os dados do CSV - {Error}")
 
     except:
         print("Não foi possível encontrar o CSV")
