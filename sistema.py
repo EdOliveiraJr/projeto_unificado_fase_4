@@ -17,30 +17,30 @@ def create_connection():
             database = env_vars.database,
         )
         mycursor = mydb.cursor()
-        print("Conexão criada com sucesso.\n")
+        print("Conexão criada com sucesso. ✔️\n ")
     except Error:
-        print(f"Erro: {Error}\n")
+        print(f"Não foi possível criar a conexão. {Error} ❌\n ")
 
 
 def close_connection():
     if "mydb" in locals() and mydb.is_connected():
         mycursor.close()
         mydb.close()
-    print("Conexão com o MySQL fechada.\n")
+    print("Conexão com o MySQL fechada.🔌🚫 \n")
 
 
 def create_db():
     try:
         mycursor.execute("CREATE DATABASE IF NOT EXISTS globo_tech;")
-        print("Banco de dados globo_tech criado com sucesso.\n")
+        print("Banco de dados globo_tech criado com sucesso. ✔️\n")
     except Error:
-        print(f"Não foi possível criar o banco de dados. Erro: {Error}\n")
+        print(f"Não foi possível criar o banco de dados. {Error} ❌\n")
 
     try:
         mycursor.execute("USE globo_tech;")
-        print("Banco de dados selecionado com sucesso.\n")
+        print("Banco de dados selecionado com sucesso. ✔️\n")
     except Error:
-        print(f"Não foi possível selecionar o banco de dados. Erro: {Error}\n")
+        print(f"Não foi possível selecionar o banco de dados. {Error} ❌\n")
 
     try:
         mycursor.execute(
@@ -48,9 +48,9 @@ def create_db():
             "id_usuario BIGINT NOT NULL AUTO_INCREMENT, "
             "PRIMARY KEY (id_usuario));"
         )
-        print("Tabela 'usuario' criada com sucesso.\n")
+        print("Tabela 'usuario' criada com sucesso. ✔️\n")
     except Error:
-        print(f"Não foi possível criar a tabela 'usuario'. Erro: {Error}\n")
+        print(f"Não foi possível criar a tabela 'usuario'. {Error} ❌\n")
 
     try:
         mycursor.execute(
@@ -59,9 +59,9 @@ def create_db():
             "nome_conteudo VARCHAR(100) NOT NULL, "
             "PRIMARY KEY (id_conteudo));"
         )
-        print("Tabela 'conteudo' criada com sucesso.\n")
+        print("Tabela 'conteudo' criada com sucesso. ✔️\n")
     except Error:
-        print(f"Não foi possível criar a tabela 'conteudo'. Erro: {Error}\n")
+        print(f"Não foi possível criar a tabela 'conteudo'. {Error}\n ❌")
 
     try:
         mycursor.execute(
@@ -70,9 +70,9 @@ def create_db():
             "nome_plataforma VARCHAR(100) NOT NULL, "
             "PRIMARY KEY (id_plataforma));"
         )
-        print("Tabela 'plataforma' criada com sucesso.\n")
+        print("Tabela 'plataforma' criada com sucesso. ✔️\n")
     except Error:
-        print(f"Não foi possível criar a tabela 'plataforma'. Erro: {Error}\n")
+        print(f"Não foi possível criar a tabela 'plataforma'. {Error} ❌\n")
 
     try:
         mycursor.execute(
@@ -90,9 +90,9 @@ def create_db():
             "FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario), "
             "FOREIGN KEY (id_plataforma) REFERENCES plataforma(id_plataforma));"
         )
-        print("Tabela 'interacao' criada com sucesso.\n")
+        print("Tabela 'interacao' criada com sucesso. ✔️ \n")
     except Error:
-        print(f"Não foi possível criar a tabela 'interacao'. Erro: {Error}\n")
+        print(f"Não foi possível criar a tabela 'interacao'. {Error}\n ❌")
 
 
 def insert_usuario(id_usuario):
@@ -147,21 +147,20 @@ def inserir_interacao(row, id_plataforma):
 def insert_data_csv(path):
     try:
         df = pd.read_csv(path)
+   
+        try:
+            for _, row in df.iterrows():
+                insert_usuario(row["id_usuario"])
+                insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
+                id_plataforma = insert_plataforma(row["plataforma"])
+                inserir_interacao(row, id_plataforma)
+            print("\nDados do CSV inseridos com sucesso. ✔️\n")
+        except Error:
+            print(f"Não foi possível carregar os dados do CSV. {Error} ❌\n")
     except:
-        print(f'\nNome do arquivo invalido: {path}\n')
+        print(f'\nNome do arquivo invalido: {path} ❌ \n')
     
-    try:
-        for _, row in df.iterrows():
-            insert_usuario(row["id_usuario"])
-            insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
-            id_plataforma = insert_plataforma(row["plataforma"])
-            inserir_interacao(row, id_plataforma)
-        print("\nDados do CSV inseridos com sucesso.\n")
-    except Error:
-        print(f"Não foi possível carregar os dados do CSV - {Error}\n")
 
-    except:
-        print("Não foi possível encontrar o CSV\n")
 
 
 def conteudos_mais_consumidos(top = 5):
