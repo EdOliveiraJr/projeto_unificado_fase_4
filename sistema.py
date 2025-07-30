@@ -1,7 +1,33 @@
-def insert_usuario(id_usuario):
-    mycursor.execute(f"SELECT id_usuario FROM usuario WHERE id_usuario = {id_usuario};")
-    if mycursor.fetchone() is None:
-        mycursor.execute(f"INSERT INTO usuario (id_usuario) VALUES ({id_usuario});")
+import env_vars
+import mysql.connector
+from mysql.connector import Error
+import pandas as pd
+
+df = pd.read_csv('interacoes_globo.csv')
+
+mydb = None
+mycursor = None
+
+def create_connection():
+  try:
+    global mydb
+    global mycursor
+    mydb = mysql.connector.connect(
+      host = env_vars.host,
+      user = env_vars.user,
+      password = env_vars.password,
+      database = env_vars.database,
+    )
+    mycursor = mydb.cursor()
+    print("Conexão criada com sucesso.")
+  except Error:
+    print(f"Erro: {Error}") 
+
+def close_connection():
+  if "mydb" in locals() and mydb.is_connected():
+    mycursor.close()
+    mydb.close()
+  print("Conexão com o MySQL fechada.")
 
 def create_db():
     try:
@@ -67,6 +93,11 @@ def create_db():
         print("Tabela 'interacao' criada com sucesso.\n")
     except:
         print(f"Não foi possível criar a tabela 'interacao'. Erro: {e}\n")
+
+def insert_usuario(id_usuario):
+    mycursor.execute(f"SELECT id_usuario FROM usuario WHERE id_usuario = {id_usuario};")
+    if mycursor.fetchone() is None:
+        mycursor.execute(f"INSERT INTO usuario (id_usuario) VALUES ({id_usuario});")
 
 def insert_plataforma(nome_plataforma):
     mycursor.execute(
