@@ -121,3 +121,5 @@ def insert_conteudo(id_conteudo, nome_conteudo):
         mycursor.execute(
             f'INSERT INTO conteudo (id_conteudo, nome_conteudo) VALUES ({id_conteudo}, "{nome_conteudo}");'
         )
+
+
