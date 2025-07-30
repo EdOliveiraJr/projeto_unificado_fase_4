@@ -148,7 +148,7 @@ def insert_data_csv(path):
     try:
         df = pd.read_csv(path)
     except:
-        print(f'Nome do arquivo invalido: {path}\n')
+        print(f'\nNome do arquivo invalido: {path}\n')
     
     try:
         for _, row in df.iterrows():
@@ -156,7 +156,7 @@ def insert_data_csv(path):
             insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
             id_plataforma = insert_plataforma(row["plataforma"])
             inserir_interacao(row, id_plataforma)
-        print("Dados do CSV inseridos com sucesso.\n")
+        print("\nDados do CSV inseridos com sucesso.\n")
     except Error:
         print(f"Não foi possível carregar os dados do CSV - {Error}\n")
 
@@ -223,3 +223,8 @@ def plataforma_maior_engajamento(top = 5):
         """
     )
     return mycursor.fetchall()
+
+def converter_segundos_para_horas(segundos):
+    horas, resto = divmod(segundos, 3600)
+    minutos, segundos = divmod(resto, 60)
+    return f"{horas:02}:{minutos:02}:{segundos:02}"

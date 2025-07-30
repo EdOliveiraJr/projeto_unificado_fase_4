@@ -66,16 +66,16 @@ def main():
           sistema.insert_data_csv(path)
         
         elif opcao == "4":
-          print("\nTop Conteúdos Mais Consumidos: ")
+          print("\n*** Top Conteúdos Mais Consumidos: ***\n")
 
-          rank = int(input('\nInsira o tamanho do rank top que deseja visualizar: '))
+          rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
           
           print()
           for id, cont, ttl in sistema.conteudos_mais_consumidos(rank):
-              print(f'Id: {id} - Conteúdo: {cont} - Tempo total de consumo: {ttl}')
+              print(f'Id: {id} - Conteúdo: {cont} - Tempo total de consumo: {sistema.converter_segundos_para_horas(ttl)}')
         
         elif opcao == "5":
-          print("\nTop Conteúdos Mais Comentados: ")
+          print("\n*** Top Conteúdos Mais Comentados ***\n")
 
           rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
 
@@ -84,7 +84,7 @@ def main():
               print(f'Id: {id} - Conteúdo: {cont} - Total comentários: {ttl}')
         
         elif opcao == "6":
-          print("\nTop Plataformas com Maior Engajamento: ")
+          print("\n*** Top Plataformas com Maior Engajamento ***\n")
         
           rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
 
@@ -100,7 +100,7 @@ def main():
             
             sys.exit(0)
         else:
-            print("Opção inválida. Tente novamente.\n")
+            print("\nOpção inválida. Tente novamente.\n")
 
 if __name__ == "__main__":
     main()
