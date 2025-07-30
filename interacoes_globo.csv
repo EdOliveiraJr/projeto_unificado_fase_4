@@ -56,7 +56,7 @@ id_conteudo,nome_conteudo,id_usuario,timestamp_interacao,plataforma,tipo_interac
 6,The Voice Brasil,159,2024-10-24 22:36:20,Globoplay,view_start,3050,
 6,The Voice Brasil,160,2024-10-24 22:40:00,TV Globo,comment,,Essa candidata é incrível!
 7,Podcast GE Tabelando,161,2024-10-25 11:04:40,GE Globo,view_start,2350,
-7,Podcast GE Tabelando,162,2024-10-25 11:09:30,Spotify,comment,,Melhor podcast de futebol, sem clubismo.
+7,Podcast GE Tabelando,162,2024-10-25 11:09:30,Spotify,comment,,Melhor podcast de futebol sem clubismo.
 8,Sessão da Tarde Clássicos,163,2024-10-26 15:08:10,TV Globo,like,,
 10,Documentário Amazônia Viva,164,2024-10-27 22:06:00,Globoplay,view_start,3350,
 12,Futebol de Sabado,165,2024-10-28 16:36:50,Sportv Play,view_start,7050,
@@ -174,7 +174,7 @@ id_conteudo,nome_conteudo,id_usuario,timestamp_interacao,plataforma,tipo_interac
 8,Sessão da Tarde Clássicos,284,2024-11-01 15:00:00,TV Globo,view_start,5400,
 10,Documentário Amazônia Viva,285,2024-11-02 22:00:00,Globoplay,view_start,3300,
 12,Futebol de Sabado,287,2024-11-03 16:30:00,Sportv Play,view_start,7000,
-13,Desenrola Brasil Podcast,288,2024-11-04 08:00:00,G1,comment,,Muito útil, obrigado!
+13,Desenrola Brasil Podcast,288,2024-11-04 08:00:00,G1,comment,,Muito útil obrigado!
 14,Globo Repórter Especial,289,2024-11-04 23:00:00,TV Globo,view_start,3600,
 15,Domingão com Huck,290,2024-11-05 18:00:00,TV Globo,view_start,7200,
 6,The Voice Brasil,291,2024-11-06 22:30:00,Globoplay,view_start,3100,

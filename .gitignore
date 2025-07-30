@@ -1,6 +1,7 @@
 .vscode/
 
-env_var.py
+env_vars.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

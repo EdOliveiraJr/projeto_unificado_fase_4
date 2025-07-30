@@ -6,28 +6,27 @@ import pandas as pd
 mydb = None
 mycursor = None
 
-
 def create_connection():
     try:
         global mydb
         global mycursor
         mydb = mysql.connector.connect(
-            host=env_vars.host,
-            user=env_vars.user,
-            password=env_vars.password,
-            database=env_vars.database,
+            host = env_vars.host,
+            user = env_vars.user,
+            password = env_vars.password,
+            database = env_vars.database,
         )
         mycursor = mydb.cursor()
-        print("Conexão criada com sucesso.")
+        print("Conexão criada com sucesso.\n")
     except Error:
-        print(f"Erro: {Error}")
+        print(f"Erro: {Error}\n")
 
 
 def close_connection():
     if "mydb" in locals() and mydb.is_connected():
         mycursor.close()
         mydb.close()
-    print("Conexão com o MySQL fechada.")
+    print("Conexão com o MySQL fechada.\n")
 
 
 def create_db():
@@ -145,22 +144,24 @@ def inserir_interacao(row, id_plataforma):
     )
 
 
-def insert_data_csv(path_csv):
+def insert_data_csv(path):
     try:
-        print(f"Iniciando o carregamento dos dados do CSV {path_csv}...")
-        df = pd.read_csv(path_csv)
-        try:
-            for _, row in df.iterrows():
-                insert_usuario(row["id_usuario"])
-                insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
-                id_plataforma = insert_plataforma(row["plataforma"])
-                inserir_interacao(row, id_plataforma)
-            print("Dados do CSV inseridos com sucesso.")
-        except Error:
-            print(f"Não foi possível carregar os dados do CSV - {Error}")
+        df = pd.read_csv(path)
+    except:
+        print(f'\nNome do arquivo invalido: {path}\n')
+    
+    try:
+        for _, row in df.iterrows():
+            insert_usuario(row["id_usuario"])
+            insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
+            id_plataforma = insert_plataforma(row["plataforma"])
+            inserir_interacao(row, id_plataforma)
+        print("\nDados do CSV inseridos com sucesso.\n")
+    except Error:
+        print(f"Não foi possível carregar os dados do CSV - {Error}\n")
 
     except:
-        print("Não foi possível encontrar o CSV")
+        print("Não foi possível encontrar o CSV\n")
 
 
 def conteudos_mais_consumidos(top = 5):
@@ -206,6 +207,7 @@ def conteudos_mais_comentados(top = 5):
     )
     return mycursor.fetchall()
 
+
 def plataforma_maior_engajamento(top = 5):
     mycursor.execute(
         f"""            
@@ -221,3 +223,8 @@ def plataforma_maior_engajamento(top = 5):
         """
     )
     return mycursor.fetchall()
+
+def converter_segundos_para_horas(segundos):
+    horas, resto = divmod(segundos, 3600)
+    minutos, segundos = divmod(resto, 60)
+    return f"{horas:02}:{minutos:02}:{segundos:02}"
