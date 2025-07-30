@@ -1,5 +1,4 @@
 import sys
-import pandas as pd
 import sistema
 
 def exibir_infos_projeto():
@@ -21,7 +20,7 @@ def exibir_infos_projeto():
             *     Lucas Sandes                                             *
             *     Danilo Pinho                                             *
             *                                                              *
-            *                 Equipe: Serpentes Tech 🐍🧑🏽‍💻                 *
+            *                 Equipe: Serpentes Tech 🐍🧑🏽‍💻                  *
             ****************************************************************
         """
     )
