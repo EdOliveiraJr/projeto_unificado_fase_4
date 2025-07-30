@@ -112,3 +112,12 @@ def insert_plataforma(nome_plataforma):
         )
         mydb.commit()
         return mycursor.lastrowid
+
+def insert_conteudo(id_conteudo, nome_conteudo):
+    mycursor.execute(
+        f"SELECT id_conteudo FROM conteudo WHERE id_conteudo = {id_conteudo};"
+    )
+    if mycursor.fetchone() is None:
+        mycursor.execute(
+            f'INSERT INTO conteudo (id_conteudo, nome_conteudo) VALUES ({id_conteudo}, "{nome_conteudo}");'
+        )
