@@ -51,7 +51,6 @@ CREATE TABLE interacao
 
 -- Script de inserção de dados conteudo
 
-
 -- Script de inserção de dados interacao
 
 -- Script métrica conteudos_mais_consumidos
@@ -59,3 +58,8 @@ CREATE TABLE interacao
 -- Script métrica plataforma_maior_engajamento
 
 -- Script métrica conteudos_mais_comentados
+
+
+
+
+
