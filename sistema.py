@@ -8,7 +8,7 @@ df = pd.read_csv('interacoes_globo.csv')
 mydb = None
 mycursor = None
 
-def createConnection():
+def create_connection():
   try:
     global mydb
     global mycursor
@@ -23,7 +23,7 @@ def createConnection():
   except Error:
     print(f"Erro: {Error}") 
 
-def closeConnection():
+def close_connection():
   if "mydb" in locals() and mydb.is_connected():
     mycursor.close()
     mydb.close()
