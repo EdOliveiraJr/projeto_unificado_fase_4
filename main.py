@@ -68,29 +68,38 @@ def main():
         elif opcao == "4":
           print("\n*** Top Conteúdos Mais Consumidos: ***\n")
 
-          rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
-          
-          print()
-          for id, cont, ttl in sistema.conteudos_mais_consumidos(rank):
-              print(f'Id: {id} - Conteúdo: {cont} - Tempo total de consumo: {sistema.converter_segundos_para_horas(ttl)}')
+          try:             
+            rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+            print()
+            for id, cont, ttl in sistema.conteudos_mais_consumidos(rank):
+                print(f'Id: {id} - Conteúdo: {cont} - Tempo total de consumo: {sistema.converter_segundos_para_horas(ttl)}')
+          except:
+            print('\nEntrada inválida. Insira um número.\n')
         
         elif opcao == "5":
           print("\n*** Top Conteúdos Mais Comentados ***\n")
 
-          rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+          try:
+            rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+            print()
+            
+            for id, cont, ttl in sistema.conteudos_mais_comentados(rank):
+                print(f'Id: {id} - Conteúdo: {cont} - Total comentários: {ttl}')
+          except:  
+            print('\nEntrada inválida. Insira um número.\n')
 
-          print()
-          for id, cont, ttl in sistema.conteudos_mais_comentados(rank):
-              print(f'Id: {id} - Conteúdo: {cont} - Total comentários: {ttl}')
         
         elif opcao == "6":
           print("\n*** Top Plataformas com Maior Engajamento ***\n")
         
-          rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+          try:
+            rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+            print()
+            for id, plat, ttl in sistema.plataforma_maior_engajamento(rank):
+              print(f'Id: {id} - Plataforma: {plat} - Total engajamento: {ttl}')
+          except:  
+            print('\nEntrada inválida. Insira um número.\n')
 
-          print()
-          for id, plat, ttl in sistema.plataforma_maior_engajamento(rank):
-            print(f'Id: {id} - Plataforma: {plat} - Total engajamento: {ttl}')
         
         elif opcao == "7":
             print()

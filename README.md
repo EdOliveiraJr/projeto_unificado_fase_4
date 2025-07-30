@@ -135,7 +135,7 @@ projeto_engajamento_fase_4/
 3. Certifique-se de que a biblioteca mysql-connection está instalada, para instalar execute:
 
    ```bash
-   pip install mysql-connection-python
+   pip install mysql-connector-python
    ```
 
 4. Crie um arquivo chamado env_vars.py no formato seguinte com os dodos do sua conexão mysql local:
