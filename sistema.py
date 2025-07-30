@@ -205,3 +205,19 @@ def conteudos_mais_comentados(top = 5):
         """
     )
     return mycursor.fetchall()
+
+def plataforma_maior_engajamento(top = 5):
+    mycursor.execute(
+        f"""            
+            SELECT 
+                p.id_plataforma,
+                p.nome_plataforma,
+                COUNT(*) AS total_interacoes
+            FROM interacao AS i
+            JOIN plataforma AS p ON p.id_plataforma = i.id_plataforma
+            WHERE i.tipo_interacao != 'view_start'
+            GROUP BY p.id_plataforma, p.nome_plataforma
+            ORDER BY total_interacoes desc limit {top};
+        """
+    )
+    return mycursor.fetchall()
