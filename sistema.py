@@ -3,7 +3,6 @@ def insert_usuario(id_usuario):
     if mycursor.fetchone() is None:
         mycursor.execute(f"INSERT INTO usuario (id_usuario) VALUES ({id_usuario});")
 
-
 def create_db():
     try:
         mycursor.execute("CREATE DATABASE IF NOT EXISTS interacoes_globotech;")
@@ -68,3 +67,17 @@ def create_db():
         print("Tabela 'interacao' criada com sucesso.\n")
     except:
         print(f"Não foi possível criar a tabela 'interacao'. Erro: {e}\n")
+
+def insert_plataforma(nome_plataforma):
+    mycursor.execute(
+        f'SELECT id_plataforma FROM plataforma WHERE nome_plataforma = "{nome_plataforma}";'
+    )
+    resultado = mycursor.fetchone()
+    if resultado:
+        return resultado[0]
+    else:
+        mycursor.execute(
+            f'INSERT INTO plataforma (nome_plataforma) VALUES ("{nome_plataforma}");'
+        )
+        mydb.commit()
+        return mycursor.lastrowid
