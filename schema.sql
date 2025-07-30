@@ -1,10 +1,10 @@
 -- Criação do Banco de Dados
-CREATE DATABASE globo_tech;
+CREATE DATABASE IF NOT EXISTS globo_tech;
 
 USE globo_tech;
 
 -- Script de criação da tabela usuario
-CREATE TABLE usuario
+CREATE TABLE IF NOT EXISTS usuario 
   (
     id_usuario BIGINT NOT NULL AUTO_INCREMENT,
     nome_usuario VARCHAR(100) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE usuario
   );
 
 -- Script de criação da tabela plataforma
-CREATE TABLE plataforma
+CREATE TABLE IF NOT EXISTS plataforma 
   (
     id_plataforma SMALLINT NOT NULL AUTO_INCREMENT,
     nome_plataforma VARCHAR(100) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE plataforma
   );
 
 -- Script de criação da tabela conteudo
-CREATE TABLE conteudo
+CREATE TABLE IF NOT EXISTS conteudo
   (
     id_conteudo SMALLINT NOT NULL AUTO_INCREMENT,
     nome_conteudo VARCHAR(100) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE conteudo
   );
   
 -- Script de criação da tabela interacao
-CREATE TABLE interacao
+CREATE TABLE IF NOT EXISTS interacao
   (
     id_interacao BIGINT NOT NULL AUTO_INCREMENT,
     id_usuario BIGINT NOT NULL,
