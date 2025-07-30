@@ -163,9 +163,9 @@ def insert_data_csv(path_csv):
         print("Não foi possível encontrar o CSV")
 
 
-def conteudos_mais_consumidos(top=5):
+def conteudos_mais_consumidos(top = 5):
     mycursor.execute(
-        f"""
+        f'''
             SELECT
                 i.id_conteudo,
                 c.nome_conteudo,
@@ -181,6 +181,27 @@ def conteudos_mais_consumidos(top=5):
                 i.id_conteudo, c.nome_conteudo
             ORDER BY
                 tempo_total_consumo_segundos DESC LIMIT {top};
+        '''
+    )
+    return mycursor.fetchall()
+
+
+def conteudos_mais_comentados(top = 5):
+    mycursor.execute(
+        f"""
+            SELECT
+                i.id_conteudo, c.nome_conteudo, COUNT(*) AS total_comentarios
+            FROM 
+                interacao as i
+            JOIN
+                conteudo as c ON i.id_conteudo = c.id_conteudo
+            WHERE 
+                tipo_interacao = 'comment'
+            GROUP BY 
+                i.id_conteudo
+            ORDER BY 
+                total_comentarios DESC limit {top};
+
         """
     )
     return mycursor.fetchall()
