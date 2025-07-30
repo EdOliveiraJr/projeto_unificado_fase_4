@@ -138,3 +138,25 @@ def inserir_interacao(row, id_plataforma):
                   "{row["timestamp_interacao"]}")
     """
     )
+
+def conteudos_mais_consumidos(top = 5):
+    mycursor.execute(
+        f'''
+            SELECT
+                i.id_conteudo,
+                c.nome_conteudo,
+                -- A função SUM() soma os valores.
+                -- A função COALESCE() trata os valores nulos/vazios como 0 para não dar erro na soma.
+                -- A função CAST() converte o texto para um número inteiro (INT).
+                SUM(COALESCE(CAST(i.watch_duration_seconds AS UNSIGNED), 0)) AS tempo_total_consumo_segundos
+            FROM
+                interacao as i
+            JOIN
+                conteudo as c ON i.id_conteudo = c.id_conteudo
+            GROUP BY
+                i.id_conteudo, c.nome_conteudo
+            ORDER BY
+                tempo_total_consumo_segundos DESC LIMIT {top};
+        '''
+    )
+    return mycursor.fetchall()
