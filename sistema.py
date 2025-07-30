@@ -6,26 +6,29 @@ import pandas as pd
 mydb = None
 mycursor = None
 
+
 def create_connection():
-  try:
-    global mydb
-    global mycursor
-    mydb = mysql.connector.connect(
-      host = env_vars.host,
-      user = env_vars.user,
-      password = env_vars.password,
-      database = env_vars.database,
-    )
-    mycursor = mydb.cursor()
-    print("Conexão criada com sucesso.")
-  except Error:
-    print(f"Erro: {Error}") 
+    try:
+        global mydb
+        global mycursor
+        mydb = mysql.connector.connect(
+            host=env_vars.host,
+            user=env_vars.user,
+            password=env_vars.password,
+            database=env_vars.database,
+        )
+        mycursor = mydb.cursor()
+        print("Conexão criada com sucesso.")
+    except Error:
+        print(f"Erro: {Error}")
+
 
 def close_connection():
-  if "mydb" in locals() and mydb.is_connected():
-    mycursor.close()
-    mydb.close()
-  print("Conexão com o MySQL fechada.")
+    if "mydb" in locals() and mydb.is_connected():
+        mycursor.close()
+        mydb.close()
+    print("Conexão com o MySQL fechada.")
+
 
 def create_db():
     try:
@@ -92,10 +95,12 @@ def create_db():
     except Error:
         print(f"Não foi possível criar a tabela 'interacao'. Erro: {Error}\n")
 
+
 def insert_usuario(id_usuario):
     mycursor.execute(f"SELECT id_usuario FROM usuario WHERE id_usuario = {id_usuario};")
     if mycursor.fetchone() is None:
         mycursor.execute(f"INSERT INTO usuario (id_usuario) VALUES ({id_usuario});")
+
 
 def insert_plataforma(nome_plataforma):
     mycursor.execute(
@@ -111,6 +116,7 @@ def insert_plataforma(nome_plataforma):
         mydb.commit()
         return mycursor.lastrowid
 
+
 def insert_conteudo(id_conteudo, nome_conteudo):
     mycursor.execute(
         f"SELECT id_conteudo FROM conteudo WHERE id_conteudo = {id_conteudo};"
@@ -119,6 +125,7 @@ def insert_conteudo(id_conteudo, nome_conteudo):
         mycursor.execute(
             f'INSERT INTO conteudo (id_conteudo, nome_conteudo) VALUES ({id_conteudo}, "{nome_conteudo}");'
         )
+
 
 def inserir_interacao(row, id_plataforma):
     mycursor.execute(
@@ -137,19 +144,43 @@ def inserir_interacao(row, id_plataforma):
     """
     )
 
+
 def insert_data_csv(path_csv):
-    try:   
-      print(f"Iniciando o carregamento dos dados do CSV {path_csv}...")
-      df = pd.read_csv(path_csv)
-      try:
-          for _, row in df.iterrows():
-              insert_usuario(row["id_usuario"])
-              insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
-              id_plataforma = insert_plataforma(row["plataforma"])
-              inserir_interacao(row, id_plataforma)
-          print('Dados do CSV inseridos com sucesso.')
-      except Error:
-          print(f'Não foi possível carregar os dados do CSV - {Error}' )
+    try:
+        print(f"Iniciando o carregamento dos dados do CSV {path_csv}...")
+        df = pd.read_csv(path_csv)
+        try:
+            for _, row in df.iterrows():
+                insert_usuario(row["id_usuario"])
+                insert_conteudo(row["id_conteudo"], row["nome_conteudo"])
+                id_plataforma = insert_plataforma(row["plataforma"])
+                inserir_interacao(row, id_plataforma)
+            print("Dados do CSV inseridos com sucesso.")
+        except Error:
+            print(f"Não foi possível carregar os dados do CSV - {Error}")
 
     except:
-      print("Não foi possível encontrar o CSV")
+        print("Não foi possível encontrar o CSV")
+
+
+def conteudos_mais_consumidos(top=5):
+    mycursor.execute(
+        f"""
+            SELECT
+                i.id_conteudo,
+                c.nome_conteudo,
+                -- A função SUM() soma os valores.
+                -- A função COALESCE() trata os valores nulos/vazios como 0 para não dar erro na soma.
+                -- A função CAST() converte o texto para um número inteiro (INT).
+                SUM(COALESCE(CAST(i.watch_duration_seconds AS UNSIGNED), 0)) AS tempo_total_consumo_segundos
+            FROM
+                interacao as i
+            JOIN
+                conteudo as c ON i.id_conteudo = c.id_conteudo
+            GROUP BY
+                i.id_conteudo, c.nome_conteudo
+            ORDER BY
+                tempo_total_consumo_segundos DESC LIMIT {top};
+        """
+    )
+    return mycursor.fetchall()
