@@ -227,3 +227,21 @@ def converter_segundos_para_horas(segundos):
     horas, resto = divmod(segundos, 3600)
     minutos, segundos = divmod(resto, 60)
     return f"{horas:02}:{minutos:02}:{segundos:02}"
+
+def conteudo_maior_engajamento(top = 5):
+    print(f"Iniciando")
+    mycursor.execute(
+        f"""            
+            SELECT 
+                c.id_conteudo,
+                c.nome_conteudo,
+                COUNT(*) AS total_interacoes_conteudo
+            FROM conteudo AS c
+            JOIN interacao AS i ON i.id_conteudo = c.id_conteudo
+            WHERE i.tipo_interacao != 'view_start'
+            GROUP BY c.id_conteudo, c.nome_conteudo
+            ORDER BY total_interacoes_conteudo DESC LIMIT {top};
+        """
+    )
+    print("Finalizando")
+    return mycursor.fetchall()

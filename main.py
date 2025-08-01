@@ -16,7 +16,7 @@ def exibir_infos_projeto():
             *                                                              *
             *   Alunos:                                                    *
             *     Edvaldo Oliveira                                         *
-            *     Malu Fazendo                                             *
+            *     Malu Fazenda                                             *
             *     Lucas Sandes                                             *
             *     Danilo Pinho                                             *
             *                                                              *
@@ -35,7 +35,8 @@ def exibir_menu():
             4. 🔝👀 Top conteúdos mais consumidos
             5. 🔝💬 Top conteúdos mais comentados
             6. 🔝👍🏽 Top plataformas com maior engajamento
-            7. 🚪🏃🏽‍➡️ Sair
+            7. 🔝📺 Top conteúdos com maior engajamento
+            8. 🚪🏃🏽‍➡️ Sair
             ============================================
         """
     )
@@ -99,8 +100,20 @@ def main():
           except:  
             print('\nEntrada inválida. Insira um número. ❌\n')
 
-        
+
         elif opcao == "7":
+          print("\n*** Top Conteúdos com Maior Engajamento 🔝📺 ***\n")
+        
+          try:
+            rank = int(input('Insira o tamanho do rank top que deseja visualizar: '))
+            print()
+            for id, cont, ttl in sistema.conteudo_maior_engajamento(rank):
+              print(f'Id: {id:02} - Conteúdo: {cont[:25]:<30} - Total engajamento: {ttl:02} ❤️👍🏽')
+          except:  
+            print('\nEntrada inválida. Insira um número. ❌\n')
+
+        
+        elif opcao == "8":
             print()
             sistema.close_connection()
             
