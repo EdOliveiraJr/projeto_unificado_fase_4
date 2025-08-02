@@ -1,6 +1,6 @@
-# 📊 Projeto Unificado - Fase 4: Persistência e Análise de Engajamento com Banco de Dados Relacional
+# Projeto Unificado - Fase 4: Persistência e Análise de Engajamento com Banco de Dados Relacional
 
-## 📌 Objetivo
+## Objetivo
 
 Esta fase do projeto tem como foco principal a aplicação dos conceitos de **Banco de Dados Relacional** em um sistema de análise de engajamento de mídias. Após trabalhar com dados em memória nas fases anteriores, agora a proposta é persistir as informações em um banco de dados MySQL, promovendo maior **robustez**, **escalabilidade** e **aderência às práticas de mercado**.
 
@@ -22,14 +22,14 @@ Nesta fase, implementamos:
 
 ### 2. Banco de Dados
 
-#### 🗂️ Entidades Modeladas
+#### Entidades Modeladas
 
 - **Usuário**
 - **Conteúdo**
 - **Plataforma**
 - **Interação**
 
-#### 🧩 Modelagem
+#### Modelagem
 
 - **Modelo Entidade-Relacionamento (MER)**
   
@@ -44,7 +44,7 @@ Nesta fase, implementamos:
   ![DER](./img/diagrama_entidade_relacionamento.png)
 
 
-#### 📄 Script DDL
+#### Script DDL
 
 - Arquivo: `schema.sql`
 - Banco: `globo_tech`
@@ -65,13 +65,13 @@ Nesta fase, implementamos:
 
 Consultas criadas para análise dos dados persistidos:
 
-- 🔝 **Ranking de conteúdos mais consumidos** (ordenados por tempo total de consumo)
-- 🚀 **Plataforma com maior engajamento** (total de interações like, share, comment)
-- 💬 **Conteúdos mais comentados**
+-  **Ranking de conteúdos mais consumidos** (ordenados por tempo total de consumo)
+-  **Plataforma com maior engajamento** (total de interações like, share, comment)
+-  **Conteúdos mais comentados**
 
 ---
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 projeto_engajamento_fase_4/
@@ -95,7 +95,7 @@ projeto_engajamento_fase_4/
 └── README.md
 ```
 
-## 🧪 Avaliação
+## Avaliação
 
 | Critério                                                     | Peso |
 |--------------------------------------------------------------|------|
@@ -107,7 +107,7 @@ projeto_engajamento_fase_4/
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Python 3.10+**
 - **MySQL 8+**
@@ -117,7 +117,7 @@ projeto_engajamento_fase_4/
 
 ---
 
-## 🚀 Como Executar
+## Como Executar
 
 1. Clone o repositório:
 
@@ -162,6 +162,6 @@ projeto_engajamento_fase_4/
 
 ---
 
-## 📝 Licença
+## Licença
 
 Este projeto é apenas para fins educacionais.
